@@ -12,7 +12,7 @@
     ],
     "author": "Prevter",
     "license": "MIT",
-    "dependencies": {
-        "glob": "^11.0.0"
+    "devDependencies": {
+        "@types/node": "^25.3.5"
     }
 }

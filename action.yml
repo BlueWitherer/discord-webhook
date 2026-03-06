@@ -3,53 +3,53 @@ description: Send a Discord webhook message
 
 inputs:
   webhook-url:
-    description: 'The webhook URL to send the message to'
+    description: "The webhook URL to send the message to"
     required: true
 
   content:
-    description: 'The content of the message to send'
+    description: "The content of the message to send"
     required: false
-    default: ''
+    default: ""
 
   author:
-    description: 'The author of the message'
+    description: "The author of the message"
     required: false
-    default: ''
+    default: ""
 
   avatar:
-    description: 'The avatar of the author'
+    description: "The avatar of the author"
     required: false
-    default: ''
+    default: ""
 
   embed-title:
-    description: 'The title of the embed'
+    description: "The title of the embed"
     required: false
-    default: ''
+    default: ""
 
   embed-description:
-    description: 'The description of the embed'
+    description: "The description of the embed"
     required: false
-    default: ''
+    default: ""
 
   embed-url:
-    description: 'The URL of the embed'
+    description: "The URL of the embed"
     required: false
-    default: ''
+    default: ""
 
   embed-author:
-    description: 'The author of the embed'
+    description: "The author of the embed"
     required: false
-    default: ''
+    default: ""
 
   embed-author-icon:
-    description: 'The icon of the author'
+    description: "The icon of the author"
     required: false
-    default: ''
+    default: ""
 
   embed-color:
-    description: 'The color of the embed in hex format (#RRGGBB)'
+    description: "The color of the embed in hex format (#RRGGBB)"
     required: false
-    default: ''
+    default: ""
 
   embed-fields:
     description: |
@@ -57,32 +57,32 @@ inputs:
       Each line should be a field in the format `name=value`.
       (Max 25 fields)
     required: false
-    default: ''
+    default: ""
 
   embed-image:
-    description: 'The image of the embed'
+    description: "The image of the embed"
     required: false
-    default: ''
+    default: ""
 
   embed-thumbnail:
-    description: 'The thumbnail of the embed'
+    description: "The thumbnail of the embed"
     required: false
-    default: ''
+    default: ""
 
   embed-footer:
-    description: 'The footer of the embed'
+    description: "The footer of the embed"
     required: false
-    default: ''
+    default: ""
 
   embed-footer-icon:
-    description: 'The icon of the footer'
+    description: "The icon of the footer"
     required: false
-    default: ''
+    default: ""
 
   embed-timestamp:
-    description: 'The timestamp of the embed'
+    description: "The timestamp of the embed"
     required: false
-    default: ''
+    default: ""
 
   files:
     description: |
@@ -91,29 +91,28 @@ inputs:
       Glob patterns are supported.
       (Max 10 files, 25MB total)
     required: false
-    default: ''
+    default: ""
 
   debug-print:
-    description: 'Print the message to the console before sending'
+    description: "Print the message to the console before sending"
     required: false
-    default: false
+    default: "false"
 
 runs:
-  using: 'composite'
+  using: "composite"
   steps:
-    - name: Download action code
-      shell: bash
-      run: git clone https://github.com/prevter/discord-webhook.git 
+    - name: Checkout code
+      uses: actions/checkout@v4
 
-    - name: Use Node.js
-      uses: actions/setup-node@v4
+    - name: Use Bun
+      uses: oven-sh/setup-bun@v1
       with:
-        node-version: '20.x'
+        bun-version: "latest"
 
     - name: Install dependencies
       shell: bash
-      run: cd discord-webhook && npm install && cd ..
-    
+      run: bun install
+
     - name: Send Discord Webhook
       shell: bash
       run: node discord-webhook/src/index.js

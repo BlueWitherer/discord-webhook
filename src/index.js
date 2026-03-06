@@ -1,4 +1,4 @@
-const { Webhook } = require('./discord');
+const { Webhook } = require('./discord.ts');
 
 function getEnv(name) {
     const value = process.env[name];
@@ -35,7 +35,7 @@ class EmbedBuilder {
         this.embed.description = description;
         this.changed = true;
     }
-    
+
     setTitle(title) {
         this.embed.title = title;
         this.changed = true;
@@ -158,7 +158,7 @@ async function main() {
 
     applySetting(webhook, 'setUsername', 'AUTHOR');
     applySetting(webhook, 'setAvatar', 'AVATAR');
-    
+
     const embed = buildEmbed();
     if (embed) {
         webhook.addEmbed(embed);
