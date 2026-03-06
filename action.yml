@@ -89,7 +89,7 @@ inputs:
       The files to send with the message.
       Each line should be a path to a file.
       Glob patterns are supported.
-      (Max 10 files, 25MB total)
+      (Max 10 files, 25MB total size)
     required: false
     default: ""
 
