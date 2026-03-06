@@ -136,7 +136,7 @@ function buildEmbed() {
 
 async function main() {
     const webhookURL = process.env.WEBHOOK_URL;
-    const content = process.env.CONTENT.trim();
+    const content = process.env.CONTENT?.trim();
     const debugPrint = process.env.DEBUG_PRINT === 'true';
     const filesPatterns = getEnv('FILES');
     const files = [];
