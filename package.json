@@ -1,18 +1,15 @@
 {
     "name": "discord-webhook",
     "version": "1.0.0",
-    "private": true,
-    "description": "Simple way to send Discord webhook messages from GitHub Actions",
+    "author": "Prevter",
     "main": "src/index.js",
+    "description": "Simple way to send Discord webhook messages from GitHub Actions",
     "keywords": [
         "discord",
         "webhook",
         "github",
         "actions"
     ],
-    "author": "Prevter",
     "license": "MIT",
-    "devDependencies": {
-        "glob": "^13.0.6"
-    }
+    "private": true
 }

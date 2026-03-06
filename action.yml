@@ -101,17 +101,10 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-
     - name: Use Bun
       uses: oven-sh/setup-bun@v2
       with:
         bun-version: "latest"
-
-    - name: Install dependencies
-      shell: bash
-      run: bun install
 
     - name: Send Discord Webhook
       shell: bash
