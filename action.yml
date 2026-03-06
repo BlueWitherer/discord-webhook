@@ -89,7 +89,7 @@ inputs:
       The files to send with the message.
       Each line should be a path to a file.
       Glob patterns are supported.
-      (Max 10 files, 25MB total size)
+      (Max 10 files, 25MB total)
     required: false
     default: ""
 
@@ -115,7 +115,7 @@ runs:
 
     - name: Send Discord Webhook
       shell: bash
-      run: node discord-webhook/src/index.js
+      run: bun ${{ github.workspace }}/src/index.js
       env:
         WEBHOOK_URL: ${{ inputs.webhook-url }}
         CONTENT: ${{ inputs.content }}
