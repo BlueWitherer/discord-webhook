@@ -26,7 +26,18 @@ class EmbedBuilder {
     /**
      * @type {WebhookEmbed}
      */
-    embed = {};
+    embed = {
+        author: undefined,
+        color: undefined,
+        description: undefined,
+        fields: [],
+        footer: undefined,
+        image: undefined,
+        thumbnail: undefined,
+        timestamp: undefined,
+        title: undefined,
+        url: undefined,
+    };
 
     /**
      * @type {boolean}
@@ -172,7 +183,7 @@ class EmbedBuilder {
 
         for (const line of lines) {
             const [name, value] = line.split('=');
-            this.embed.fields.push({ name, value });
+            this.embed.fields?.push({ name, value });
         };
 
         this.changed = true;
