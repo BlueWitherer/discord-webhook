@@ -24,7 +24,7 @@ jobs:
 
                       [Link to GitHub](<https://github.com>)
                   author: "Epic Webhook"
-                  avatar: "https://cdn.prod.website-files.com/6257adef93867e50d84d30e2/636e0a6a49cf127bf92de1e2_icon_clyde_blurple_RGB.png"
+                  avatar: "https://i.imgur.com/vIVtTrU.png"
                   files: |
                       *.md
                       *.json
@@ -32,15 +32,15 @@ jobs:
                   embed-description: "This is a test embed."
                   embed-url: "https://github.com/BlueWitherer/discord-webhook" # sry prev </3
                   embed-author: "Some Author"
-                  embed-author-icon: "https://cdn.prod.website-files.com/6257adef93867e50d84d30e2/636e0a6a49cf127bf92de1e2_icon_clyde_blurple_RGB.png"
+                  embed-author-icon: "https://i.imgur.com/vIVtTrU.png"
                   embed-color: "#FF7FED"
                   embed-fields: |
                       first=First field
                       second=Second field
                       third=Third field
                       fourth=Fourth field
-                  embed-image: "https://cdn.prod.website-files.com/6257adef93867e50d84d30e2/636e0a6a49cf127bf92de1e2_icon_clyde_blurple_RGB.png"
-                  embed-thumbnail: "https://cdn.prod.website-files.com/6257adef93867e50d84d30e2/636e0a6a49cf127bf92de1e2_icon_clyde_blurple_RGB.png"
+                  embed-image: "https://i.imgur.com/vIVtTrU.png"
+                  embed-thumbnail: "https://i.imgur.com/vIVtTrU.png"
                   embed-footer: "Test Footer"
-                  embed-footer-icon: "https://cdn.prod.website-files.com/6257adef93867e50d84d30e2/636e0a6a49cf127bf92de1e2_icon_clyde_blurple_RGB.png"
+                  embed-footer-icon: "https://i.imgur.com/vIVtTrU.png"
                   embed-timestamp: "now"

@@ -49,7 +49,7 @@ The author of the webhook message.
 The avatar of the webhook message author.
 > ```yaml
 > with:
->   avatar: "[Epic Workflow](https://cdn.prod.website-files.com/6257adef93867e50d84d30e2/636e0a6a49cf127bf92de1e2_icon_clyde_blurple_RGB.png)"
+>   avatar: "[Epic Workflow](https://i.imgur.com/vIVtTrU.png)"
 > ```
 
 ##### `embed-title`
@@ -84,7 +84,7 @@ The author of the embed.
 The icon of the embed author.
 > ```yaml
 > with:
->   embed-author-icon: "https://cdn.prod.website-files.com/6257adef93867e50d84d30e2/636e0a6a49cf127bf92de1e2_icon_clyde_blurple_RGB.png"
+>   embed-author-icon: "https://i.imgur.com/vIVtTrU.png"
 > ```
 
 ##### `embed-color`
@@ -112,14 +112,14 @@ Up to 25 fields.
 The image of the embed, usually the large image.
 > ```yaml
 > with:
->   embed-image: "https://cdn.prod.website-files.com/6257adef93867e50d84d30e2/636e0a6a49cf127bf92de1e2_icon_clyde_blurple_RGB.png"
+>   embed-image: "https://i.imgur.com/vIVtTrU.png"
 > ```
 
 ##### `embed-thumbnail`
 The thumbnail of the embed, usually the small image.
 > ```yaml
 > with:
->   embed-thumbnail: "https://cdn.prod.website-files.com/6257adef93867e50d84d30e2/636e0a6a49cf127bf92de1e2_icon_clyde_blurple_RGB.png"
+>   embed-thumbnail: "https://i.imgur.com/vIVtTrU.png"
 > ```
 
 ##### `embed-footer`
@@ -133,7 +133,7 @@ The footer text of the embed.
 The icon of the footer.
 > ```yaml
 > with:
->   embed-footer-icon: "https://cdn.prod.website-files.com/6257adef93867e50d84d30e2/636e0a6a49cf127bf92de1e2_icon_clyde_blurple_RGB.png"
+>   embed-footer-icon: "https://i.imgur.com/vIVtTrU.png"
 > ```
 
 ##### `embed-timestamp`
