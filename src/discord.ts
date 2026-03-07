@@ -103,7 +103,6 @@ export default class Webhook {
         const res = await fetch(this.options.url, {
             method: 'POST',
             body: formData,
-            headers: { 'Host': 'discord.com', },
         });
 
         if (!res.ok) {

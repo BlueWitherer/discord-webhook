@@ -1,16 +1,14 @@
 import Webhook from "./discord";
 const { WebhookEmbed } = require("./discord");
 
-import { expand } from "./glob";
+import expand from "./glob";
 
-const env = process.env;
+const vars = process.env;
 
 /**
- * 
  * @param {string} name 
- * @returns {string | null}
  */
-const getEnv = name => env[name]?.trim() || null;
+const getEnv = name => vars[name]?.trim() || null;
 
 /**
  * @param {string} webhook 
@@ -190,10 +188,6 @@ class EmbedBuilder {
     };
 };
 
-/**
- * 
- * @returns {WebhookEmbed | null}
- */
 function buildEmbed() {
     const builder = new EmbedBuilder();
 
@@ -214,9 +208,9 @@ function buildEmbed() {
 };
 
 async function main() {
-    const webhookURL = env.WEBHOOK_URL;
-    const content = env.CONTENT?.trim();
-    const debugPrint = env.DEBUG_PRINT === 'true';
+    const webhookURL = vars.WEBHOOK_URL;
+    const content = vars.CONTENT?.trim();
+    const debugPrint = vars.DEBUG_PRINT === 'true';
     const filesPatterns = getEnv('FILES');
     const files = [];
 
