@@ -27,16 +27,16 @@ class EmbedBuilder {
      * @type {WebhookEmbed}
      */
     embed = {
-        author: undefined,
-        color: undefined,
-        description: undefined,
-        fields: [],
-        footer: undefined,
-        image: undefined,
-        thumbnail: undefined,
-        timestamp: undefined,
-        title: undefined,
-        url: undefined,
+        "author": {},
+        "color": undefined,
+        "description": undefined,
+        "fields": [],
+        "footer": {},
+        "image": {},
+        "thumbnail": {},
+        "timestamp": undefined,
+        "title": undefined,
+        "url": undefined
     };
 
     /**

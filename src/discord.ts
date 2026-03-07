@@ -15,22 +15,22 @@ export interface WebhookEmbed {
     timestamp?: string;
 
     author?: {
-        name: string;
+        name?: string;
         icon_url?: string;
         url?: string;
     };
 
     footer?: {
-        text: string;
+        text?: string;
         icon_url?: string;
     };
 
     image?: {
-        url: string;
+        url?: string;
     };
 
     thumbnail?: {
-        url: string;
+        url?: string;
     };
 
     fields?: {

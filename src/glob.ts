@@ -10,6 +10,6 @@ export function expandPattern(pattern: string): string[] {
 
     const regex = new RegExp("^" + match.replace("*", ".*") + "$");
     return readdirSync(dir)
-        .filter(file => regex.test(file))
-        .map(file => join(dir, file));
+        .filter((file) => regex.test(file))
+        .map((file) => join(dir, file));
 };
