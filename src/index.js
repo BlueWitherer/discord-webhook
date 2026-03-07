@@ -1,5 +1,5 @@
 import Webhook from "./discord";
-import { WebhookEmbed } from "./discord";
+const { WebhookEmbed } = require("./discord");
 
 import { expandPattern } from "./glob";
 
