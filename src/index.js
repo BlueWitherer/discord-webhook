@@ -1,7 +1,7 @@
 import Webhook from "./discord";
 const { WebhookEmbed } = require("./discord");
 
-import { expandPattern } from "./glob";
+import { expand } from "./glob";
 
 const env = process.env;
 
@@ -221,7 +221,7 @@ async function main() {
     const files = [];
 
     if (filesPatterns) {
-        for (const pattern of filesPatterns.split("\n")) files.push(...expandPattern(pattern));
+        for (const pattern of filesPatterns.split("\n")) files.push(...expand(pattern));
     };
 
     const webhook = new Webhook({
