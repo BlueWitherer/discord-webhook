@@ -1,61 +1,105 @@
-const { Webhook } = require('./discord.ts');
+import Webhook from "./discord";
+import { WebhookEmbed } from "./discord";
 
-function getEnv(name) {
-    const value = process.env[name];
-    if (!value || value === '')
-        return null;
-    return value;
-}
+import { expandPattern } from "./glob";
 
+const env = process.env;
+
+/**
+ * 
+ * @param {string} name 
+ * @returns {string | null}
+ */
+const getEnv = name => env[name]?.trim() || null;
+
+/**
+ * @param {string} webhook 
+ * @param {string} func 
+ * @param {string} name 
+ */
 function applySetting(webhook, func, name) {
     const value = getEnv(name);
-    if (value) {
-        webhook[func](value);
-    }
-}
+    if (value) webhook[func](value);
+};
 
 class EmbedBuilder {
-    constructor() {
-        this.embed = {
-            description: undefined,
-            fields: [],
-            author: {},
-            footer: {},
-            image: {},
-            thumbnail: {},
-            timestamp: undefined,
-            title: undefined,
-            url: undefined,
-            color: undefined,
-        };
-        this.changed = false;
-    }
+    /**
+     * @type {WebhookEmbed}
+     */
+    embed = {};
 
+    /**
+     * @type {boolean}
+     */
+    changed = false;
+
+    constructor() { };
+
+    /**
+     * @param {string} key 
+     * @param {any} value 
+     */
+    #set(key, value) {
+        this.embed[key] = value;
+        this.changed = true
+    };
+
+    /**
+     * @param {string} description 
+     */
     setDescription(description) {
-        this.embed.description = description;
-        this.changed = true;
-    }
+        this.#set("description", description);
+    };
 
+    /**
+     * @param {string} title 
+     */
     setTitle(title) {
-        this.embed.title = title;
-        this.changed = true;
-    }
+        this.#set("title", title);
+    };
 
+    /**
+     * @param {string} url 
+     */
     setURL(url) {
-        this.embed.url = url;
-        this.changed = true;
-    }
+        this.#set("url", url);
+    };
 
+    /**
+     * @param {string} color 
+     */
     setColor(color) {
         if (color.startsWith('#')) {
             color = parseInt(color.slice(1), 16);
         } else {
             color = parseInt(color);
-        }
-        this.embed.color = color;
-        this.changed = true;
-    }
+        };
 
+        this.#set("color", color);
+    };
+
+    /**
+     * @param {string} path 
+     * @param {any} value 
+     */
+    #setObj(path, value) {
+        let target = this.embed;
+
+        const keys = path.split(".");
+        const lastKey = keys.pop();
+
+        for (const key of keys) {
+            if (!(key in target)) target[key] = {};
+            target = target[key];
+        };
+
+        target[lastKey] = value;
+        this.changed = true;
+    };
+
+    /**
+     * @param {string} timestamp 
+     */
     setTimestamp(timestamp) {
         if (timestamp === 'now') {
             this.embed.timestamp = new Date().toISOString();
@@ -66,55 +110,79 @@ class EmbedBuilder {
         } else {
             const parsed = parseInt(timestamp);
             this.embed.timestamp = new Date(parsed).toISOString();
-        }
-        this.changed = true;
-    }
+        };
 
+        this.changed = true;
+    };
+
+    /**
+     * @param {string} text 
+     */
     setFooterText(text) {
-        this.embed.footer.text = text;
-        this.changed = true;
-    }
+        this.#setObj("footer.text", text);
+    };
 
+    /**
+     * @param {string} icon 
+     */
     setFooterIcon(icon) {
-        this.embed.footer.icon_url = icon;
-        this.changed = true;
-    }
+        this.#setObj("footer.icon_url", icon)
+    };
 
+    /**
+     * @param {string} name 
+     */
     setAuthorName(name) {
-        this.embed.author.name = name;
-        this.changed = true;
-    }
+        this.#setObj("author.name", name);
+    };
 
+    /**
+     * @param {string} icon 
+     */
     setAuthorIcon(icon) {
-        this.embed.author.icon_url = icon;
-        this.changed = true;
-    }
+        this.#setObj("author.icon_url", icon);
+    };
 
+    /**
+     * @param {string} url 
+     */
     setAuthorURL(url) {
-        this.embed.author.url = url;
-        this.changed = true;
-    }
+        this.#setObj("author.url", url);
+    };
 
+    /**
+     * @param {string} url 
+     */
     setImage(url) {
-        this.embed.image.url = url;
-        this.changed = true;
-    }
+        this.#setObj("image.url", url)
+    };
 
+    /**
+     * @param {string} url 
+     */
     setThumbnail(url) {
-        this.embed.thumbnail.url = url;
-        this.changed = true;
-    }
+        this.#setObj("thumbnail.url", url);
+    };
 
+    /**
+     * @param {string} keyvalues 
+     */
     addFields(keyvalues) {
         const lines = keyvalues.trim().split('\n');
+
         for (const line of lines) {
             const [name, value] = line.split('=');
             this.embed.fields.push({ name, value });
-        }
-        this.changed = true;
-    }
-}
+        };
 
+        this.changed = true;
+    };
+};
+
+/**
+ * 
+ * @returns {WebhookEmbed | null}
+ */
 function buildEmbed() {
     const builder = new EmbedBuilder();
 
@@ -132,23 +200,18 @@ function buildEmbed() {
     applySetting(builder, 'setTimestamp', 'EMBED_TIMESTAMP');
 
     return builder.changed ? builder.embed : null;
-}
+};
 
 async function main() {
-    const webhookURL = process.env.WEBHOOK_URL;
-    const content = process.env.CONTENT?.trim();
-    const debugPrint = process.env.DEBUG_PRINT === 'true';
+    const webhookURL = env.WEBHOOK_URL;
+    const content = env.CONTENT?.trim();
+    const debugPrint = env.DEBUG_PRINT === 'true';
     const filesPatterns = getEnv('FILES');
     const files = [];
 
     if (filesPatterns) {
-        const glob = require('glob');
-        const patterns = filesPatterns.split('\n');
-        for (const pattern of patterns) {
-            const filesFound = glob.sync(pattern);
-            files.push(...filesFound);
-        }
-    }
+        for (const pattern of filesPatterns.split("\n")) files.push(...expandPattern(pattern));
+    };
 
     const webhook = new Webhook({
         url: webhookURL,
@@ -160,20 +223,16 @@ async function main() {
     applySetting(webhook, 'setAvatar', 'AVATAR');
 
     const embed = buildEmbed();
-    if (embed) {
-        webhook.addEmbed(embed);
-    }
+    if (embed) webhook.addEmbed(embed);
 
-    for (const file of files) {
-        webhook.addFile(file);
-    }
+    webhook.setFiles(files);
 
     try {
         await webhook.send(content);
     } catch (err) {
         console.error(err);
-        process.exit(0);
-    }
-}
+        process.exitCode = 1;
+    };
+};
 
 main();
