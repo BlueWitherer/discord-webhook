@@ -96,7 +96,7 @@ inputs:
     default: ""
 
   debug-print:
-    description: "Print the message to the console before sending."
+    description: "Print the message to the console before sending it."
     required: false
     default: "false"
 
