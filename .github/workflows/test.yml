@@ -1,4 +1,4 @@
-name: Test the action
+name: Test Action
 
 on:
     workflow_dispatch:
@@ -19,7 +19,7 @@ jobs:
                   webhook-url: ${{ secrets.WEBHOOK_URL }}
                   debug-print: true
                   content: |
-                      This is a test message
+                      This is a test message...
                       with multiple lines!
 
                       [Link to GitHub](<https://github.com>)
@@ -36,9 +36,9 @@ jobs:
                   embed-color: "#FF7FED"
                   embed-fields: |
                       first=First field
-                      second=Second field
-                      third=Third field
-                      fourth=Fourth field
+                      Second=Second field
+                      THIRD!=Third field
+                      fourth.=Fourth field
                   embed-image: "https://i.imgur.com/vIVtTrU.png"
                   embed-thumbnail: "https://i.imgur.com/vIVtTrU.png"
                   embed-footer: "Test Footer"

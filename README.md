@@ -1,9 +1,11 @@
 # discord-webhook
 Simple way to send Discord webhook messages with GitHub Actions.
 
+This action runs using the latest version of Bun.
+
 ## Usage
 Let's start off by adding this action in your workflow file!
-```yaml
+```yml
 - uses: BlueWitherer/discord-webhook@main
   with:
     webhook-url: ${{ secrets.RELEASE_WEBHOOK }}
@@ -17,7 +19,7 @@ Required input fields.
 
 ##### `webhook-url`
 The webhook URL to send the message to.
-```yaml
+```yml
 with:
   webhook-url: ${{ secrets.YOUR_WEBHOOK_SECRET }}
 ```
@@ -27,11 +29,11 @@ Optional input fields.
 
 ##### `content`
 The content of the message to send. Can contain multiple lines.
-```yaml
+```yml
 with:
   content: "Hello world!"
 ```
-```yaml
+```yml
 with:
   content: |
     This is a test message
@@ -40,56 +42,56 @@ with:
 
 ##### `author`
 The author of the webhook message.
-```yaml
+```yml
 with:
   author: "Epic Workflow"
 ```
 
 ##### `avatar`
 The avatar of the webhook message author.
-```yaml
+```yml
 with:
   avatar: "[Epic Workflow](https://i.imgur.com/vIVtTrU.png)"
 ```
 
 ##### `embed-title`
 The title of the embed.
-```yaml
+```yml
 with:
   embed-title: "Test Embed"
 ```
 
 ##### `embed-description`
 The description of the embed.
-```yaml
+```yml
 with:
   embed-description: "This is a test embed."
 ```
 
 ##### `embed-url`
 The title URL of the embed.
-```yaml
+```yml
 with:
   embed-url: "https://github.com/BlueWitherer/discord-webhook"
 ```
 
 ##### `embed-author`
 The author of the embed.
-```yaml
+```yml
 with:
   embed-author: "Some Author"
 ```
 
 ##### `embed-author-icon`
 The icon of the embed author.
-```yaml
+```yml
 with:
   embed-author-icon: "https://i.imgur.com/vIVtTrU.png"
 ```
 
 ##### `embed-color`
 The color of the embed in hex format such as `#RRGGBB`.
-```yaml
+```yml
 with:
   embed-color: "#FF7FED"
 ```
@@ -99,7 +101,7 @@ The fields of the embed.
 Each line should be a field in the format `name=value`.
 
 Up to 25 fields.
-```yaml
+```yml
 with:
   embed-fields: |
     first=First field
@@ -110,35 +112,35 @@ with:
 
 ##### `embed-image`
 The image of the embed, usually the large image.
-```yaml
+```yml
 with:
   embed-image: "https://i.imgur.com/vIVtTrU.png"
 ```
 
 ##### `embed-thumbnail`
 The thumbnail of the embed, usually the small image.
-```yaml
+```yml
 with:
   embed-thumbnail: "https://i.imgur.com/vIVtTrU.png"
 ```
 
 ##### `embed-footer`
 The footer text of the embed.
-```yaml
+```yml
 with:
   embed-footer: "Test Footer"
 ```
 
 ##### `embed-footer-icon`
 The icon of the footer.
-```yaml
+```yml
 with:
   embed-footer-icon: "https://i.imgur.com/vIVtTrU.png"
 ```
 
 ##### `embed-timestamp`
 The timestamp of the embed.
-```yaml
+```yml
 with:
   embed-timestamp: "now"
 ```
@@ -149,7 +151,7 @@ Each line should be a path to a file.
 Glob patterns are supported.
 
 Up to 10 files. Supports a total of `25MB`.
-```yaml
+```yml
 with:
   files: |
     *.md
@@ -158,7 +160,7 @@ with:
 
 ##### `debug-print`
 Print the message to the console before sending it.
-```yaml
+```yml
 with:
   debug-print: true
 ```

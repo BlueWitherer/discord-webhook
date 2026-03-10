@@ -9,6 +9,6 @@ export default function expand(pattern: string): string[] {
 
     const regex = new RegExp("^" + match.replace("*", ".*") + "$");
     return readdirSync(dir)
-        .filter((file) => regex.test(file))
-        .map((file) => join(dir, file));
+        .filter((file: string) => regex.test(file))
+        .map((file: string) => join(dir, file));
 };

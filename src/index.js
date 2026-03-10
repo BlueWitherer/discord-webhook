@@ -45,49 +45,6 @@ class EmbedBuilder {
     constructor() { };
 
     /**
-     * @param {string} key 
-     * @param {any} value 
-     */
-    #set(key, value) {
-        this.embed[key] = value;
-        this.changed = true
-    };
-
-    /**
-     * @param {string} description 
-     */
-    setDescription(description) {
-        this.#set("description", description);
-    };
-
-    /**
-     * @param {string} title 
-     */
-    setTitle(title) {
-        this.#set("title", title);
-    };
-
-    /**
-     * @param {string} url 
-     */
-    setURL(url) {
-        this.#set("url", url);
-    };
-
-    /**
-     * @param {string} color 
-     */
-    setColor(color) {
-        if (color.startsWith('#')) {
-            color = parseInt(color.slice(1), 16);
-        } else {
-            color = parseInt(color);
-        };
-
-        this.#set("color", color);
-    };
-
-    /**
      * @param {string} path 
      * @param {any} value 
      */
@@ -104,6 +61,40 @@ class EmbedBuilder {
 
         target[lastKey] = value;
         this.changed = true;
+    };
+
+    /**
+     * @param {string} description 
+     */
+    setDescription(description) {
+        this.#setObj("description", description);
+    };
+
+    /**
+     * @param {string} title 
+     */
+    setTitle(title) {
+        this.#setObj("title", title);
+    };
+
+    /**
+     * @param {string} url 
+     */
+    setURL(url) {
+        this.#setObj("url", url);
+    };
+
+    /**
+     * @param {string} color 
+     */
+    setColor(color) {
+        if (color.startsWith('#')) {
+            color = parseInt(color.slice(1), 16);
+        } else {
+            color = parseInt(color);
+        };
+
+        this.#setObj("color", color);
     };
 
     /**
